@@ -38,8 +38,48 @@ They used Gemini Pro as the base model. This resulted on a big improvement over 
 
 ## [DeepSeek Math](https://github.com/deepseek-ai/DeepSeek-Math)
 
-## TODO:
+## [Orca: Progressive Learning from Complex Explanation Traces of GPT-4](https://arxiv.org/pdf/2306.02707.pdf)
+
+They fine-tune a Llama model in 5M chain of thought responses from ChatGPT and GPT4. This results
+on much powerful model than simply fine-tuning on query, response pairs because it has traces of
+the reasoning.
+
+[Orca: The Model Few Saw Coming, by AI Explained](https://www.youtube.com/watch?v=Dt_UNg7Mchg)
+
+## [Llemma: An Open Language Model For Mathematics](https://arxiv.org/abs/2310.10631)
+
+They take Code Llama and fine-tune on math datasets.
+
+![llemma](https://blog.eleuther.ai/images/blog/llemma/plot.png)
+
+## [Minerva: Solving Quantitative Reasoning Problems with Language Models](https://arxiv.org/abs/2206.14858)
+
+## [Solving Challenging Math Word Problems Using GPT-4 Code Interpreter with Code-based Self-Verification](https://arxiv.org/abs/2308.07921v1)
+
+## Comparison of closed source models
+
+https://www.anthropic.com/news/claude-3-family 60.1% 0-shot CoT
+[Gemini 1.5](https://arxiv.org/abs/2403.05530) 58.5% 4-shot Minerva prompt
+https://github.com/openai/simple-evals 72.2% 0-shot CoT
+
+Seems that `gpt-4-turbo-2024-04-09` is currently the king.
+
+## Conclusions
+
+The state of the art is far from the super-prize threshold of solving 94% of the problems. On the MATH dataset the highest score is GPT-4 with code interpreter that reaches 70%, without code interpreter the score is 53%. So
+using a code interpreter could be very important.
+
+MATH dataset could be the most similar dataset to the one in the challenge.
+
+## Vision
+
+A model trained to generate code to solve math problems using GPT4 demonstrations. Orca like.
+
+## TODO
 
 - [ ] Latex model
-- [ ] ORCA paper
 - [ ] Search about the topic of LLMs and maths
+- [ ] Search papers in Kaggle
+- [ ] https://paperswithcode.com/sota/math-word-problem-solving-on-math to watch
+- [ ] Minerva prompt
+- [ ] Download MATH dataset, 

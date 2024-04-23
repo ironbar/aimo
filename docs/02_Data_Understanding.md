@@ -64,6 +64,7 @@ https://artofproblemsolving.com/wiki/index.php/AIME_Problems_and_Solutions
 - https://www.kaggle.com/competitions/ai-mathematical-olympiad-prize/discussion/488473
 - https://www.kaggle.com/competitions/ai-mathematical-olympiad-prize/discussion/492945
 - https://www.kaggle.com/datasets/pedromoya/math-problems-solved-dataset-andersonbcdefg-hf/data
+- [MATH dataset](https://arxiv.org/abs/2103.03874)
 
 ## Describe data
 

@@ -91,6 +91,15 @@ case write them here, otherwise delete this section.--->
 
 - [AIME](https://en.wikipedia.org/wiki/American_Invitational_Mathematics_Examination). The American Invitational Mathematics Examination (AIME) is a selective and prestigious 15-question 3-hour test given since 1983 to those who rank in the top 5% on the AMC 12 high school mathematics examination (formerly known as the AHSME), and starting in 2010, those who rank in the top 2.5% on the AMC 10.
 - [AMC](https://en.wikipedia.org/wiki/American_Mathematics_Competitions). The American Mathematics Competitions (AMC) are the first of a series of competitions in secondary school mathematics that determine the United States of America's team for the International Mathematical Olympiad (IMO). AMC 12, for students under the age of 19.5 and in grades 12 and below.
+- [Common Crawl](https://commoncrawl.org/) Common Crawl is a nonprofit 501 organization that crawls the web and freely provides its archives and datasets to the public. Common Crawl's web archive consists of petabytes of data collected since 2008. It completes crawls generally every month.
+- [program-of-though](https://arxiv.org/abs/2211.12588)
+- [tool-integrated reasoning](https://arxiv.org/abs/2309.17452) We propose ToRA a series of Tool-integrated Reasoning Agents designed to solve challenging mathematical problems by seamlessly integrating natural language reasoning with the utilization of external tools (e.g., computation libraries and symbolic solvers), thereby amalgamating the analytical prowess of language and the computational efficiency of tools. To train ToRA, we curate interactive tool-use trajectories on mathematical datasets, apply imitation learning on the annotations, and propose output space shaping to further refine models' reasoning behavior.
+- [speculative decoding](https://medium.com/@TitanML/in-the-fast-lane-speculative-decoding-10x-larger-model-no-extra-cost-f33ea39d065a) It is a method to accelerate
+  inference by combining a fast and a slow model.
+- [MATH Dataset](https://arxiv.org/abs/2103.03874) a new dataset of 12,500 challenging competition mathematics problems. Each problem in MATH has a full step-by-step solution which can be used to teach models to generate answer derivations and explanations. The MATH dataset consists of problems from mathematics competitions including the
+AMC 10, AMC 12, AIME, and more. Unlike most prior work, most problems in MATH cannot be solved with a straightforward application of standard K-12 mathematics tools. Instead, humans often solve such problem by applying problem solving techniques and “heuristics”
+- [K-12 mathematics tool]
+- [GSM8k dataset](https://huggingface.co/datasets/gsm8k) a dataset of middle-school level math word problems.
 
 ## Questions
 

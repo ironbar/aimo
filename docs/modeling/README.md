@@ -15,7 +15,9 @@ https://www.kaggle.com/code/nayjest/gigabenchmark-llm-accuracy-math-problems
 - Mistral and Mixtral
 - Gemma
 - Llama 2
+- [Code llama](https://huggingface.co/blog/codellama), built on top of Llama 2.
 - [DeepSeek Math](https://github.com/deepseek-ai/DeepSeek-Math)
+- WizardMath-70B
 
 ## Generate experimentation design
 
