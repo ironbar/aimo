@@ -61,6 +61,13 @@ They take Code Llama and fine-tune on 55B tokens math datasets. Training require
 
 ## [Minerva: Solving Quantitative Reasoning Problems with Language Models](https://arxiv.org/abs/2206.14858)
 
+Minerva is based on the PaLM models and it trains them further with 38.5B tokens of math content.
+It uses a 4-shot-example prompt strategy.
+
+It says that majority voting considerably outperforms greedy decoding.
+
+![minerva-results](https://velog.velcdn.com/images/ohilikeit/post/b1eb7fdf-e8b6-4db4-90cf-f3b42ee83637/image.png)
+
 ## [Solving Challenging Math Word Problems Using GPT-4 Code Interpreter with Code-based Self-Verification](https://arxiv.org/abs/2308.07921v1)
 
 ## Comparison of closed source models
@@ -79,6 +86,8 @@ using a code interpreter could be very important.
 MATH dataset could be the most similar dataset to the one in the challenge.
 
 It seems that code training improves reasoning abilities, that is why code models are used as a base.
+
+Trainings are expensive, requiring in the order of thousand of gpu hours.
 
 ## Vision
 
