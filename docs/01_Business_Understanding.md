@@ -119,3 +119,5 @@ a plan for the challenge.
 - On AlphaCode there is a cheap way to filter bad solutions, and they can make 10 submits. Here I need
   to create the highest quality possible solution. Maybe I need a judge to score the candidate solutions.
   Judging might be easier than generating. Self-rewarding LLMs.
+- A good validation set is needed
+- The tokenizer might be relevant to have a good representation of the problem
