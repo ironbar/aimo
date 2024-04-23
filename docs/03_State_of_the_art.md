@@ -38,17 +38,24 @@ They used Gemini Pro as the base model. This resulted on a big improvement over 
 
 ## [DeepSeek Math](https://github.com/deepseek-ai/DeepSeek-Math)
 
+They take the model DeepSeek-Coder and continue training with 120B math-related tokens. Next fine-tuning
+on instructions and RL is done.
+
+![deepseek-results](https://raw.githubusercontent.com/deepseek-ai/DeepSeek-Math/main/images/instruct_results.png)
+
 ## [Orca: Progressive Learning from Complex Explanation Traces of GPT-4](https://arxiv.org/pdf/2306.02707.pdf)
 
 They fine-tune a Llama model in 5M chain of thought responses from ChatGPT and GPT4. This results
 on much powerful model than simply fine-tuning on query, response pairs because it has traces of
 the reasoning.
 
+Training required around 3.2k A100-hours.
+
 [Orca: The Model Few Saw Coming, by AI Explained](https://www.youtube.com/watch?v=Dt_UNg7Mchg)
 
 ## [Llemma: An Open Language Model For Mathematics](https://arxiv.org/abs/2310.10631)
 
-They take Code Llama and fine-tune on math datasets.
+They take Code Llama and fine-tune on 55B tokens math datasets. Training requires 23k A100 hours.
 
 ![llemma](https://blog.eleuther.ai/images/blog/llemma/plot.png)
 
@@ -70,6 +77,8 @@ The state of the art is far from the super-prize threshold of solving 94% of the
 using a code interpreter could be very important.
 
 MATH dataset could be the most similar dataset to the one in the challenge.
+
+It seems that code training improves reasoning abilities, that is why code models are used as a base.
 
 ## Vision
 

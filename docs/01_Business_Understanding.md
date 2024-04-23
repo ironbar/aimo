@@ -100,6 +100,7 @@ case write them here, otherwise delete this section.--->
 AMC 10, AMC 12, AIME, and more. Unlike most prior work, most problems in MATH cannot be solved with a straightforward application of standard K-12 mathematics tools. Instead, humans often solve such problem by applying problem solving techniques and “heuristics”
 - [K-12 mathematics tool]
 - [GSM8k dataset](https://huggingface.co/datasets/gsm8k) a dataset of middle-school level math word problems.
+- [Self-Consistency](https://learnprompting.org/docs/intermediate/self_consistency) Self-consistency1 is an approach that simply asks a model the same prompt multiple times and takes the majority result as the final answer. It is a follow up to CoT prompting, and is more powerful when used in conjunction with it.
 
 ## Questions
 
