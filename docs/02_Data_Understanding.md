@@ -66,6 +66,7 @@ https://artofproblemsolving.com/wiki/index.php/AIME_Problems_and_Solutions
 - https://www.kaggle.com/datasets/pedromoya/math-problems-solved-dataset-andersonbcdefg-hf/data
 - [MATH dataset](https://arxiv.org/abs/2103.03874)
 - https://github.com/kipok/nemo-skills
+- https://huggingface.kxxx.link/datasets/pharaouk/math-orca-arch
 
 ## Describe data
 

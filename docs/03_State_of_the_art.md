@@ -70,6 +70,15 @@ It says that majority voting considerably outperforms greedy decoding.
 
 ## [Solving Challenging Math Word Problems Using GPT-4 Code Interpreter with Code-based Self-Verification](https://arxiv.org/abs/2308.07921v1)
 
+This paper is the state of the art on MATH dataset achieving an accuracy of 84.3%. It uses GPT4-Code Interpreter which by default gets 69.7%.
+
+To improve over the baseline it asks GPT4 to verify the answer. So GPT4 uses the interpreter to generate an answer, and once it has the answer it verifies that the answer is valid according to the problem description.
+The output of this verification can be used later to improve voting, giving different weights to the solutions depending if the verification was True, Uncertain or False.
+
+![gpt4 with different prompts](res/2024-04-24-09-17-10.png)
+
+> The analysis reveals that GPT4-Code’s strong performance is not solely due to its code generation and execution abilities, but also its capacity to adjust its problem-solving strategies based on feedback from code execution, a process we term self-debugging.
+
 ## [Program of Thoughts Prompting: Disentangling Computation from Reasoning for Numerical Reasoning Tasks](https://arxiv.org/abs/2211.12588)
 
 Program-of-thoughts (PoT) prompting, which will delegate computation steps to an external language interpreter. In PoT, LMs can express reasoning steps as Python programs, and the computation can be accomplished by a Python interpreter.
