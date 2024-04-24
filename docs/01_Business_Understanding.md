@@ -84,6 +84,13 @@ It was released after 23 February 2024, so it is not allowed.
 
 [Is a fine-tuned model based on LLAMA3 eligible?](https://www.kaggle.com/competitions/ai-mathematical-olympiad-prize/discussion/495321#2763538)
 
+### Speed race
+
+> In the event of a tie, the Submission that was entered first to the Competition will be the winner. In the event a potential winner is disqualified for any reason, the Submission that received the next highest score rank will be chosen as the potential winner.
+
+Although the test set is private, this competition is kind of similar to capture the flag competition
+because the number of problems is small. Thus the first one to achieve a good score wins if there is a tie.
+
 ## Terminology
 
 <!--- Sometimes the field of the challenge has specific terms, if that is the
@@ -109,6 +116,7 @@ AMC 10, AMC 12, AIME, and more. Unlike most prior work, most problems in MATH ca
 - [Generated Knowledge Prompting](https://www.promptingguide.ai/techniques/knowledge) Use the LLM to generate
   knowledge before making a prediction. This could be useful to recall some equations that might be
   relevant to solve the problem. I might have an specialized model for this task.
+- [Isabelle](https://isabelle.in.tum.de/) Isabelle is a generic proof assistant. It allows mathematical formulas to be expressed in a formal language and provides tools for proving those formulas in a logical calculus.
 
 ## Questions
 
@@ -139,3 +147,5 @@ a plan for the challenge.
   Judging might be easier than generating. Self-rewarding LLMs.
 - A good validation set is needed
 - The tokenizer might be relevant to have a good representation of the problem
+- Inference speed will be relevant, a team capable of doing 20 predictions will beat another team doing 10 predictions.
+- What if we search for similar problems in our dataset for few-shot prompting?

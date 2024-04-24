@@ -67,6 +67,8 @@ https://artofproblemsolving.com/wiki/index.php/AIME_Problems_and_Solutions
 - [MATH dataset](https://arxiv.org/abs/2103.03874)
 - https://github.com/kipok/nemo-skills
 - https://huggingface.kxxx.link/datasets/pharaouk/math-orca-arch
+- [OpenMathInstruct-1: A 1.8 Million Math Instruction Tuning Dataset](https://arxiv.org/abs/2402.10176)
+- https://github.com/OpenBMB/OlympiadBench
 
 ## Describe data
 

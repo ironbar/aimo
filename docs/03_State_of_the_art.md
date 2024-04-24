@@ -15,7 +15,7 @@ They used Gemini Pro as the base model. This resulted on a big improvement over 
 ### Learnings
 
 - Generating a lot of solutions and scoring them could be a good strategy
-- Having a good base model is very important
+- Having a good base model is very important, changing from Palm to Gemini brought big improvements.
 
 ## [AlphaGeometry](https://deepmind.google/discover/blog/alphageometry-an-olympiad-level-ai-system-for-geometry/)
 
@@ -81,7 +81,7 @@ The output of this verification can be used later to improve voting, giving diff
 
 ## [Program of Thoughts Prompting: Disentangling Computation from Reasoning for Numerical Reasoning Tasks](https://arxiv.org/abs/2211.12588)
 
-Program-of-thoughts (PoT) prompting, which will delegate computation steps to an external language interpreter. In PoT, LMs can express reasoning steps as Python programs, and the computation can be accomplished by a Python interpreter.
+Program-of-thoughts (PoT) prompting delegates computation steps to an external language interpreter. In PoT, LMs can express reasoning steps as Python programs, and the computation can be accomplished by a Python interpreter.
 
 Results show that PoT outperforms CoT. Also Few-shot beats zero-shot and self-consistency beats single response.
 
@@ -89,38 +89,53 @@ There is a similar work called [PAL: Program-aided Language Models](https://arxi
 
 ## Comparison of closed source models
 
-https://www.anthropic.com/news/claude-3-family 60.1% 0-shot CoT
-[Gemini 1.5](https://arxiv.org/abs/2403.05530) 58.5% 4-shot Minerva prompt
-https://github.com/openai/simple-evals 72.2% 0-shot CoT
+- [gpt-4-turbo-2024-04-09](https://github.com/openai/simple-evals) 72.2% 0-shot CoT
+- [Claude 3](https://www.anthropic.com/news/claude-3-family) 60.1% 0-shot CoT
+- [Gemini 1.5](https://arxiv.org/abs/2403.05530) 58.5% 4-shot Minerva prompt
 
-Seems that `gpt-4-turbo-2024-04-09` is currently the king.
+Seems that `gpt-4-turbo-2024-04-09` is currently the king. I believe those numbers are without
+using code-interpreter, so it is likely that it is much powerful. F.e. `gpt-4-0125-preview` has a 64.5%
+score which is more similar to the reported in the papers. So the new model seems to be much
+better at math than the previous one, it might score around 90% when using the code interpreter.
+
+## [Large Language Models for Mathematical Reasoning: Progresses and Challenges](https://arxiv.org/abs/2402.00157v1)
 
 ## Conclusions
 
-The state of the art is far from the super-prize threshold of solving 94% of the problems. On the MATH dataset the highest score is GPT-4 with code interpreter that reaches 70%, without code interpreter the score is 53%. So
-using a code interpreter could be very important.
+The state of the art of open source models is far from the super-prize threshold of solving 94% of the problems.
+DeepSeekMath scores 60.9% with self-consistency over 64 samples.
 
-MATH dataset could be the most similar dataset to the one in the challenge.
+However closed-source models might be close to the goal. The last version of `gpt-4-turbo-2024-04-09` achieves a score of 72.2% 0-shot CoT. It is very likely that adding a code interpreter and self-consistency could
+get a score close to 90%. A previous version of GPT4 reached 60% without code interpreter, 70% with code interpreter and 84% with 16 samples and weighted voting.
+
+MATH dataset might be the most similar dataset to the one in the challenge.
 
 It seems that code training improves reasoning abilities, that is why code models are used as a base.
 
-Trainings are expensive, requiring in the order of thousand of gpu hours.
+Trainings are expensive, requiring in the order of thousand of gpu hours. I cannot train a model myself,
+but fine-tuning a model for the task using LoRA might be beneficial.
 
-PoT > CoT
+PoT > CoT == Using code is better than not using it
 Few-shot > Zero-shot
-Self-consistency > Single answer
-
+Self-consistency > Single answer or Greedy decoding
 
 ## Vision
 
-A model trained to generate code to solve math problems using GPT4 demonstrations. Orca like.
+The solution is very likely to include DeepSeekMath since apparently is the most powerful model and
+it is already solving 20/50 problems on the leaderboard.
+
+Using code interpreter and few-shot prompting improves the results.
+
+Being able to do multiple inferences and combining them is very likely to bring improvements.
+Optimizing the model or the code to be as fast as possible could be a relevant advantage.
+
+GPT4 is the best model so far, learning to imitate GPT4 could improve the base DeepSeekMath model.
+There might be new models or data that could change everything, f.e. GPT5.
 
 ## TODO
 
-- [ ] Latex model
 - [ ] Search about the topic of LLMs and maths
 - [ ] Search papers in Kaggle
 - [ ] https://paperswithcode.com/sota/math-word-problem-solving-on-math to watch
-- [ ] Minerva prompt
 - [ ] Download MATH dataset
 - [ ] Is there some tool, library to do PoT or PAL?
