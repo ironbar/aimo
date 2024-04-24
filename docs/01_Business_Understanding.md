@@ -92,7 +92,8 @@ case write them here, otherwise delete this section.--->
 - [AIME](https://en.wikipedia.org/wiki/American_Invitational_Mathematics_Examination). The American Invitational Mathematics Examination (AIME) is a selective and prestigious 15-question 3-hour test given since 1983 to those who rank in the top 5% on the AMC 12 high school mathematics examination (formerly known as the AHSME), and starting in 2010, those who rank in the top 2.5% on the AMC 10.
 - [AMC](https://en.wikipedia.org/wiki/American_Mathematics_Competitions). The American Mathematics Competitions (AMC) are the first of a series of competitions in secondary school mathematics that determine the United States of America's team for the International Mathematical Olympiad (IMO). AMC 12, for students under the age of 19.5 and in grades 12 and below.
 - [Common Crawl](https://commoncrawl.org/) Common Crawl is a nonprofit 501 organization that crawls the web and freely provides its archives and datasets to the public. Common Crawl's web archive consists of petabytes of data collected since 2008. It completes crawls generally every month.
-- [program-of-though](https://arxiv.org/abs/2211.12588)
+- [program-of-though (PoT)](https://arxiv.org/abs/2211.12588). In PoT the computation can be delegated to a program interpreter, thus decoupling complex computation from reasoning and language understanding.
+- [chain-of-though (CoT)](https://www.promptingguide.ai/techniques/cot) prompting enables complex reasoning capabilities through intermediate reasoning steps. You can combine it with few-shot prompting to get better results on more complex tasks that require reasoning before responding.
 - [tool-integrated reasoning](https://arxiv.org/abs/2309.17452) We propose ToRA a series of Tool-integrated Reasoning Agents designed to solve challenging mathematical problems by seamlessly integrating natural language reasoning with the utilization of external tools (e.g., computation libraries and symbolic solvers), thereby amalgamating the analytical prowess of language and the computational efficiency of tools. To train ToRA, we curate interactive tool-use trajectories on mathematical datasets, apply imitation learning on the annotations, and propose output space shaping to further refine models' reasoning behavior.
 - [speculative decoding](https://medium.com/@TitanML/in-the-fast-lane-speculative-decoding-10x-larger-model-no-extra-cost-f33ea39d065a) It is a method to accelerate
   inference by combining a fast and a slow model.
@@ -101,6 +102,13 @@ AMC 10, AMC 12, AIME, and more. Unlike most prior work, most problems in MATH ca
 - [K-12 mathematics tool]
 - [GSM8k dataset](https://huggingface.co/datasets/gsm8k) a dataset of middle-school level math word problems.
 - [Self-Consistency](https://learnprompting.org/docs/intermediate/self_consistency) Self-consistency1 is an approach that simply asks a model the same prompt multiple times and takes the majority result as the final answer. It is a follow up to CoT prompting, and is more powerful when used in conjunction with it.
+- [SymPy](https://docs.sympy.org/latest/index.html) is a Python library for symbolic mathematics. It can
+  be used for example to [solve equations](https://docs.sympy.org/latest/guides/solving/index.html).
+- **Few-shot prompting**. Create a prompt with a few examples of how to solve the task.
+- [OpenAI Codex](https://openai.com/blog/openai-codex) AI system that translates natural language to code.
+- [Generated Knowledge Prompting](https://www.promptingguide.ai/techniques/knowledge) Use the LLM to generate
+  knowledge before making a prediction. This could be useful to recall some equations that might be
+  relevant to solve the problem. I might have an specialized model for this task.
 
 ## Questions
 

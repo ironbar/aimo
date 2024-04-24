@@ -70,6 +70,14 @@ It says that majority voting considerably outperforms greedy decoding.
 
 ## [Solving Challenging Math Word Problems Using GPT-4 Code Interpreter with Code-based Self-Verification](https://arxiv.org/abs/2308.07921v1)
 
+## [Program of Thoughts Prompting: Disentangling Computation from Reasoning for Numerical Reasoning Tasks](https://arxiv.org/abs/2211.12588)
+
+Program-of-thoughts (PoT) prompting, which will delegate computation steps to an external language interpreter. In PoT, LMs can express reasoning steps as Python programs, and the computation can be accomplished by a Python interpreter.
+
+Results show that PoT outperforms CoT. Also Few-shot beats zero-shot and self-consistency beats single response.
+
+There is a similar work called [PAL: Program-aided Language Models](https://arxiv.org/abs/2211.10435)
+
 ## Comparison of closed source models
 
 https://www.anthropic.com/news/claude-3-family 60.1% 0-shot CoT
@@ -89,6 +97,11 @@ It seems that code training improves reasoning abilities, that is why code model
 
 Trainings are expensive, requiring in the order of thousand of gpu hours.
 
+PoT > CoT
+Few-shot > Zero-shot
+Self-consistency > Single answer
+
+
 ## Vision
 
 A model trained to generate code to solve math problems using GPT4 demonstrations. Orca like.
@@ -100,4 +113,5 @@ A model trained to generate code to solve math problems using GPT4 demonstration
 - [ ] Search papers in Kaggle
 - [ ] https://paperswithcode.com/sota/math-word-problem-solving-on-math to watch
 - [ ] Minerva prompt
-- [ ] Download MATH dataset, 
+- [ ] Download MATH dataset
+- [ ] Is there some tool, library to do PoT or PAL?
