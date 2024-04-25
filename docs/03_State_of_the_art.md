@@ -119,27 +119,30 @@ It seems that code training improves reasoning abilities, that is why code model
 Trainings are expensive, requiring in the order of thousand of gpu hours. I cannot train a model myself,
 but fine-tuning a model for the task using LoRA might be beneficial.
 
+```
 PoT > CoT == Using code is better than not using it
 Few-shot > Zero-shot
 Self-consistency > Single answer or Greedy decoding
+```
 
 ## Vision
 
 The solution is very likely to include DeepSeekMath since apparently is the most powerful model and
-it is already solving 20/50 problems on the leaderboard.
+it is already solving 20/50 problems on the leaderboard. This model has been already fine-tuned
+on MATH dataset, so the room for improvements using additional fine-tuning might be small.
 
 Using code interpreter and few-shot prompting improves the results.
 
 Being able to do multiple inferences and combining them is very likely to bring improvements.
 Optimizing the model or the code to be as fast as possible could be a relevant advantage.
 
-GPT4 is the best model so far, learning to imitate GPT4 could improve the base DeepSeekMath model.
+GPT4 is the best model so far, learning to imitate GPT4 might improve the base DeepSeekMath model.
 There might be new models or data that could change everything, f.e. GPT5.
 
 ## TODO
 
-- [ ] Search about the topic of LLMs and maths
-- [ ] Search papers in Kaggle
+- [x] Search about the topic of LLMs and maths
+- [x] Search papers in Kaggle
 - [ ] https://paperswithcode.com/sota/math-word-problem-solving-on-math to watch
 - [ ] Download MATH dataset
 - [ ] Is there some tool, library to do PoT or PAL?
