@@ -100,6 +100,10 @@ better at math than the previous one, it might score around 90% when using the c
 
 ## [Large Language Models for Mathematical Reasoning: Progresses and Challenges](https://arxiv.org/abs/2402.00157v1)
 
+It is not an in-depth paper, probably the most relevant information is the table below.
+
+![datasets](https://d3i71xaburhd42.cloudfront.net/42445823fb0156afddc8c72eaa5ee81dded5b965/3-Table1-1.png)
+
 ## Conclusions
 
 The state of the art of open source models is far from the super-prize threshold of solving 94% of the problems.
