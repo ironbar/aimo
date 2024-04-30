@@ -49,6 +49,8 @@ Naive parsing the response from the text does not have sense. Especially if the 
 
 ### P100 vs 2xT4
 
+The following table shows inference speed in tokens/second.
+
 | GPU \ Precision | 4bit | 16bit |
 |-----------------|------|-------|
 | P100            | 12.5 | 18.7  |
@@ -59,44 +61,28 @@ when using the 16 bit model.
 
 It is likely that using the 2xT4 in parallel (loading the model in both gpus and making inferences like a server) will beat this speeds.
 
+Links to forum posts:
 
-On my experiments 
+- <https://www.kaggle.com/competitions/ai-mathematical-olympiad-prize/discussion/492578>
+- <https://www.kaggle.com/competitions/ai-mathematical-olympiad-prize/discussion/493345>
 
-P100 4bit 12.5  token/s
+### Zero shot vs Few shot instruction following
 
-2024-04-25 14:38:02,421 - INFO - Generating code speed: 12.5 tokens/s (116)
-2024-04-25 14:38:10,432 - INFO - Generating text speed: 12.2 tokens/s (87)
-2024-04-25 14:38:18,692 - INFO - Generating code speed: 12.5 tokens/s (103)
-2024-04-25 14:38:57,085 - INFO - Generating text speed: 12.8 tokens/s (485)
+I have found that the model tends to ignore the instructions. It is much better at imitating the style of the few-shot prompt.
 
+The most clear evidence comes from the instruction that asks to use `boxed` format
+for highlighting the answer.
 
-P100 16 bit 18.7 token/s (OOM problems)
-2024-04-25 15:07:53,963 - INFO - Generating code speed: 19.6 tokens/s (119)
-2024-04-25 15:08:03,003 - INFO - Generating text speed: 19.2 tokens/s (154)
-2024-04-25 15:08:09,252 - INFO - Generating code speed: 18.7 tokens/s (117)
-2024-04-25 15:08:22,227 - INFO - Generating text speed: 18.5 tokens/s (221)
-2024-04-25 15:08:35,665 - INFO - Generating code speed: 17.9 tokens/s (241)
+| prompt    | responses with boxed |
+|-----------|----------------------|
+| zero-shot | 31%                  |
+| few-shot  | 100%                 |
 
-T4 4bit 11.7 token/s
+Despite the model being clearly required to use the format in the response it ignored
+it on 69% of the responses, which is wild for an assistant.
 
-2024-04-25 14:43:32,370 - INFO - Generating code speed: 11.7 tokens/s (142)
-2024-04-25 14:43:39,061 - INFO - Generating text speed: 11.2 tokens/s (65)
-2024-04-25 14:43:50,986 - INFO - Generating code speed: 11.7 tokens/s (140)
-2024-04-25 14:43:58,058 - INFO - Generating text speed: 10.8 tokens/s (71)
-2024-04-25 14:44:11,051 - INFO - Generating code speed: 11.7 tokens/s (152)
-2024-04-25 14:52:29,408 - INFO - Generating text speed: 10.0 tokens/s (136)
-2024-04-25 14:52:51,653 - INFO - Generating code speed: 10.9 tokens/s (242)
-
-T4 16bit
-2024-04-25 14:53:53,382 - INFO - Generating text speed: 8.3 tokens/s (41)
-2024-04-25 14:54:01,175 - INFO - Generating code speed: 15.5 tokens/s (121)
-2024-04-25 14:54:09,916 - INFO - Generating text speed: 15.4 tokens/s (120)
-2024-04-25 14:54:18,102 - INFO - Generating code speed: 15.2 tokens/s (124)
-2024-04-25 14:54:26,484 - INFO - Generating text speed: 14.2 tokens/s (96)
-2024-04-25 14:54:41,359 - INFO - Generating code speed: 14.7 tokens/s (218)
-
-https://www.kaggle.com/competitions/ai-mathematical-olympiad-prize/discussion/492578
-https://www.kaggle.com/competitions/ai-mathematical-olympiad-prize/discussion/493345
+Thus it seems pretty clear that the correct way to prompt this model is using
+few-shot prompts. That might enable to get rid of naively parsing the last integer.
 
 ### Single problem optimization
 
