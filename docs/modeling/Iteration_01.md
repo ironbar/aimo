@@ -76,10 +76,11 @@ for highlighting the answer.
 | prompt    | responses with boxed |
 |-----------|----------------------|
 | zero-shot | 31%                  |
-| few-shot  | 100%                 |
+| 3-shot    | 74%                  |
 
 Despite the model being clearly required to use the format in the response it ignored
-it on 69% of the responses, which is wild for an assistant.
+it on 69% of the responses, which is wild for an assistant. When being given 3 examples
+it doubles the responses with boxed, but it is still far from 100%.
 
 Thus it seems pretty clear that the correct way to prompt this model is using
 few-shot prompts. That might enable to get rid of naively parsing the last integer.
@@ -101,3 +102,4 @@ the optimization speed would be nice.
 
 - [ ] Problems when generating loops. https://huggingface.co/docs/transformers/en/main_classes/text_generation. That is `frequency_penalty` on OpenAI but on huggingface there are other options.
 - [ ] Analyze deepseekmath library and define experiments
+- [ ] Lower temperature when using few-shot to see if it returns more boxed answers
