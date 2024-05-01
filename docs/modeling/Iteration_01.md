@@ -73,14 +73,18 @@ I have found that the model tends to ignore the instructions. It is much better 
 The most clear evidence comes from the instruction that asks to use `boxed` format
 for highlighting the answer.
 
-| prompt    | responses with boxed |
-|-----------|----------------------|
-| zero-shot | 31%                  |
-| 3-shot    | 74%                  |
+| prompt                 | responses with boxed |
+|------------------------|----------------------|
+| zero-shot              | 31%                  |
+| 3-shot temperature 1   | 74%                  |
+| 3-shot temperature 0.5 | 79%                  |
+| 3-shot temperature 0.1 | 80%                  |
 
 Despite the model being clearly required to use the format in the response it ignored
 it on 69% of the responses, which is wild for an assistant. When being given 3 examples
 it doubles the responses with boxed, but it is still far from 100%.
+
+Lowering the temperature also seems to force the model to follow the instructions closely.
 
 Thus it seems pretty clear that the correct way to prompt this model is using
 few-shot prompts. That might enable to get rid of naively parsing the last integer.
@@ -102,4 +106,4 @@ the optimization speed would be nice.
 
 - [ ] Problems when generating loops. https://huggingface.co/docs/transformers/en/main_classes/text_generation. That is `frequency_penalty` on OpenAI but on huggingface there are other options.
 - [ ] Analyze deepseekmath library and define experiments
-- [ ] Lower temperature when using few-shot to see if it returns more boxed answers
+- [x] Lower temperature when using few-shot to see if it returns more boxed answers. Shuffle the input examples to induce variability.
