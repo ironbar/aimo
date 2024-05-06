@@ -154,11 +154,19 @@ TODO: table with results
 
 ## Conclusion
 
+DeepSeekMath seems to be capable of solving the train problems if given a similar problem as context
+in a few-shot prompt. I have been able to achieve perfect score by giving the exact same problems as input,
+but I also have seen that givin similar problems works.
+
+It does not follow the instructions too well, is better to give examples with few-shot prompt.
+
 ## Next steps
 
 - I might try to replicate or even improve the results of DeepSeekMath on MATH dataset.
 - Bigger context window will increase the chance of having a similar problem in the prompt
-- A good embedding model will also increase the likelihood of solving the problem
+- A good embedding model will also increase the likelihood of solving the problem, because more relevant
+  problems will be given as context.
+- Could I verify the answers to the problems? Instead of relying on self-consistency.
 
 ## TODO
 
@@ -168,4 +176,4 @@ TODO: table with results
 - [x] Submission with 9 few-shot examples
 - [x] Submission with 12 repetitions
 - [ ] Document results
-- [ ] Modify the temperature in the submissions
+- [x] Modify the temperature in the submissions
