@@ -73,12 +73,12 @@ I have found that the model tends to ignore the instructions. It is much better 
 The most clear evidence comes from the instruction that asks to use `boxed` format
 for highlighting the answer.
 
-| prompt                 | responses with boxed |
-|------------------------|----------------------|
-| zero-shot              | 31%                  |
-| 3-shot temperature 1   | 74%                  |
-| 3-shot temperature 0.5 | 79%                  |
-| 3-shot temperature 0.1 | 80%                  |
+| prompt    | temperature | responses with boxed |
+|-----------|-------------|----------------------|
+| zero-shot | 1           | 31%                  |
+| 3-shot    | 1           | 74%                  |
+| 3-shot    | 0.5         | 79%                  |
+| 3-shot    | 0.1         | 80%                  |
 
 Despite the model being clearly required to use the format in the response it ignored
 it on 69% of the responses, which is wild for an assistant. When being given 3 examples
@@ -96,14 +96,36 @@ a single problem optimization. Focus on a specific problem and run the solution 
 maximizing the probability of getting the correct answers. Each run could take a few minutes so
 the optimization speed would be nice.
 
+### Max output tokens
+
+TODO: table with results from the leaderboard
+
+### Number of repetitions
+
+Self-consistency is a technique that makes multiple predictions for the same problem and returns the
+most frequent answer. Intuition says that the higher the number of predictions the most likely the returned
+answer will be correct.
+
+TODO: table with results from the leaderboard
+
+### Temperature
+
+TODO: table with results
+
 ## Conclusion
 
 ## Next steps
 
 - I might try to replicate or even improve the results of DeepSeekMath on MATH dataset.
+- Bigger context window will increase the chance of having a similar problem in the prompt
+- A good embedding model will also increase the likelihood of solving the problem
 
 ## TODO
 
 - [ ] Problems when generating loops. https://huggingface.co/docs/transformers/en/main_classes/text_generation. That is `frequency_penalty` on OpenAI but on huggingface there are other options.
 - [ ] Analyze deepseekmath library and define experiments
 - [x] Lower temperature when using few-shot to see if it returns more boxed answers. Shuffle the input examples to induce variability.
+- [x] Submission with 9 few-shot examples
+- [x] Submission with 12 repetitions
+- [ ] Document results
+- [ ] Modify the temperature in the submissions
