@@ -104,6 +104,11 @@ It is not an in-depth paper, probably the most relevant information is the table
 
 ![datasets](https://d3i71xaburhd42.cloudfront.net/42445823fb0156afddc8c72eaa5ee81dded5b965/3-Table1-1.png)
 
+## Videos about reasoning
+
+- [Mathematical Reasoning in Language Models by OpenAI](https://www.youtube.com/watch?v=0rfgyQ-wAQM) This is a very good talk. They train a model to rate if the reasoning steps are correct. They also open-source the training data: [prm800k](https://github.com/openai/prm800k). They say that judging math problem solutions is a hard problem.
+- [Can LLMs Reason & Plan? (Talk @Google_DeepMind LLM Reasoning Seminar)](https://www.youtube.com/watch?v=hGXhFa3gzBs). Not very good.
+
 ## Conclusions
 
 The state of the art of open source models is far from the super-prize threshold of solving 94% of the problems.

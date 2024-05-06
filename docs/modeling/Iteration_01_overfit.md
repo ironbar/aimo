@@ -89,16 +89,38 @@ Lowering the temperature also seems to force the model to follow the instruction
 Thus it seems pretty clear that the correct way to prompt this model is using
 few-shot prompts. That might enable to get rid of naively parsing the last integer.
 
-### Single problem optimization
+### Single problem optimization: Problem 1
 
 I have downloaded the notebook to my PC and it is running at around 30 token/s. I'm thinking of doing
 a single problem optimization. Focus on a specific problem and run the solution search multiple times
 maximizing the probability of getting the correct answers. Each run could take a few minutes so
 the optimization speed would be nice.
 
-### Max output tokens
+The goal is to write python code that solves the problem.
 
-TODO: table with results from the leaderboard
+1. Initial attempts with few-shot prompt from DeepSeekMath repo cannot solve the problem
+2. If I add the solution as a few-shot prompt it is able to solve the problems, but it forgets to
+   simplify the result many times.
+3. I can automate the simplification in the print, and that leads to perfect answers. It returns
+   the correct answer 5 out of 5 runs.
+4. If I try the baseline few-shot prompt with automatic simplification the problem is not solved anytime
+   despite trying with different temperatures.
+5. If I ask GPT4 to create a similar problem, it reaches perfect solution. This suggests that if I give
+   similar problems in the few-shot prompt I could boost the score. That also works with humans, if we
+   are shown sample problems or sample code solutions that is very helpful for solving the problem.
+
+It is worth saying that among all the experiments the model was able to reach the correct answer twice
+without using code. It wasn't able to do the same with code unless receiving a very similar problem in
+the few-shot prompt.
+
+### Cheating to overfit on train set
+
+I have solved all the train set problems. Now I'm going to create a few shot prompt with random solutions
+from the train set. That is cheating, because the solution is on the prompt, but it is worth trying.
+
+The outcome is the expected, the system is able to reach the correct answer for all the problems.
+
+I'm going to use this few-shot prompt to make submissions.
 
 ### Number of repetitions
 
@@ -106,7 +128,25 @@ Self-consistency is a technique that makes multiple predictions for the same pro
 most frequent answer. Intuition says that the higher the number of predictions the most likely the returned
 answer will be correct.
 
-TODO: table with results from the leaderboard
+| repetitions | LB score |
+|-------------|----------|
+| 4           | 15       |
+| 8           | 20       |
+| 12          | 19       |
+
+The results show an improvement when increasing the repetitions from 4 to 8, but not from 8 to 12.
+It might be randomness or maybe we need more resolution.
+
+### Max output tokens
+
+| max output tokens | LB score |
+|-------------------|----------|
+| 512               | 20       |
+| 1024              | 19       |
+| 2048              | 19       |
+
+It seems that for the problems that the system is currently solving the number of output tokens
+does not need to be big.
 
 ### Temperature
 
