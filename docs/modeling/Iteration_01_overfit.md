@@ -167,6 +167,7 @@ It does not follow the instructions too well, is better to give examples with fe
 - A good embedding model will also increase the likelihood of solving the problem, because more relevant
   problems will be given as context.
 - Could I verify the answers to the problems? Instead of relying on self-consistency.
+- Optimizing the inference speed will be very helpful.
 
 ## TODO
 

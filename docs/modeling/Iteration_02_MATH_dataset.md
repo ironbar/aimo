@@ -39,13 +39,39 @@ Links:
 - [Original repo of the MATH dataset](https://github.com/hendrycks/math?tab=readme-ov-file)
 - [Kaggle dataset with MATH and GSM8K datasets](https://www.kaggle.com/datasets/alejopaullier/aimo-external-dataset)
 
+#### Token len distribution
+
+![input_token_len_distribution](res/input_token_len_distribution.png)
+
+![output_token_len_distribution](res/output_token_len_distribution.png)
+
+As expected the more difficult problems have longer answers and descriptions. Very beautiful graph.
+
+#### Removing problems with non positive integer answers
+
+I'm left with 4345 train problems and 2828 test problems. The distribution of problems is more or less
+balanced except for level 1 that has half the problems than the other categories.
+
+### Evaluating the MATH dataset
+
+If making a single prediction per problem evaluating 566 test problems in 85 minutes. That is around 6 problems per minute.
+GPU usage is high, so I don't think there is much room for improvement. I can run two evaluations in parallel
+with good GPU usage.
+
+Uncertainty in the results is big, f.e. for an accuracy of 54% the uncertainty is around 4%. Using the whole
+test set will reduce the uncertainty below 2%, but evaluation would take 7 hours on my PC.
+
 ## Results
 
 ## Conclusion
 
 ## Next steps
 
+- What about the MATH code dataset?
+
 ## TODO
 
 - [ ] How to evaluate the MATH dataset
 - [ ] What if I use the MATH dataset to create few-shot prompts for the train dataset?
+- [ ] Analyze evaluation results based on difficulty level, how do they correlate with LB score?
+- [ ] Use kaggle notebooks for evaluation, I have 30 hours per week.
