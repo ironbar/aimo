@@ -63,6 +63,16 @@ test set will reduce the uncertainty below 2%, but evaluation would take 7 hours
 
 ## Results
 
+### First evaluations on MATH dataset
+
+I have evaluated 1/5 of the test dataset in around 85 minutes.
+
+![results_grouped_by_level](res/2024-05-07-15-06-07.png)
+
+The accuracy of the model decreases with the level of difficulty. Maybe I should focus on problems
+of level 3 and above. The averaged accuracy of those categories is 42%, which equals to 21 problems solved
+on the public leaderboard.
+
 ## Conclusion
 
 ## Next steps
@@ -75,3 +85,4 @@ test set will reduce the uncertainty below 2%, but evaluation would take 7 hours
 - [ ] What if I use the MATH dataset to create few-shot prompts for the train dataset?
 - [ ] Analyze evaluation results based on difficulty level, how do they correlate with LB score?
 - [ ] Use kaggle notebooks for evaluation, I have 30 hours per week.
+- [ ] Evaluate on Veridas cluster?
