@@ -63,27 +63,17 @@ test set will reduce the uncertainty below 2%, but evaluation would take 7 hours
 
 ### About inference loop repetitions
 
-TODO:
+Sometimes I have seen repetitions on inference, f.e. the following text was repeated multiple times:
 
-repetition_penalty
-https://discuss.huggingface.co/t/transformers-repetition-penalty-parameter/43638
-
-Can be dangerous. In the response some tokens will be repeated very often.
-
-no_repeat_ngram_size
-
--> Collect examples of loop to better think how to solve them
-
-It is also related to temperature, temperature of 0 will increase the likeliness of loops.
-
-
-
-279 tokens
-
+```
 We can then try each factor to see if it gives us a valid solution for $x$ and $y$.\n\nIf we try $10x + 15 = 1$, we get $10x = -14$, which is not possible since $x$ must be a positive integer.\n\nIf we try $10x + 15 = 2$, we get $10x = -13$, which is not possible.\n\nIf we try $10x + 15 = 7$, we get $10x = -8$, which is not possible.\n\nIf we try $10x + 15 = 14$, we get $10x = -1$, which is not possible.\n\nIf we try $10x + 15 = 49$, we get $10x = 34$, so $x = 3.4$, which is not an integer.\n\nIf we try $10x + 15 = 98$, we get $10x = 83$, so $x = 8.3$, which is not an integer.\n\nSo, we must have made a mistake somewhere. Let's go back and check our work.\n\nWe factored the left side of the equation as $(10x + 15)(y - 4) = 98$.\n\n
+```
 
+I have seen that Huggingface has tools such as [repetition_penalty](https://discuss.huggingface.co/t/transformers-repetition-penalty-parameter/43638) or `no_repeat_ngram_size`.
 
-But the solution would be weird, because it will make a tiny change at the end to avoid repeating the loop. I think the only real solution is higher temperature.
+However using those options can be dangerous. In the response some tokens will be repeated very often, using a penalty on them will hurt the accuracy of the model. Documentation is not
+clear and I believe it is better to play with the temperature of the model than touching
+those parameters.
 
 ### Optimal stop criteria for self-consistency
 
