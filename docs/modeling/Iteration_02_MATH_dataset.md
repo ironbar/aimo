@@ -61,6 +61,8 @@ with good GPU usage.
 Uncertainty in the results is big, f.e. for an accuracy of 54% the uncertainty is around 4%. Using the whole
 test set will reduce the uncertainty below 2%, but evaluation would take 7 hours on my PC.
 
+However if I only evaluate the problems of difficulty level 5 then evaluating 580 problems takes around 131 minutes.
+
 ### About inference loop repetitions
 
 Sometimes I have seen repetitions on inference, f.e. the following text was repeated multiple times:
@@ -116,6 +118,25 @@ Wrong: 32/53 (0.60 ± 0.13)
 
 It is a little bit weird because apparently the token speed generation was not so different ([18.7 vs 15.2](./Iteration_01_overfit.md#p100-vs-2xt4))
 
+#### OOM issues with P100
+
+```bash
+63/580 out of memory 10%
+https://www.kaggle.com/code/ironbar/deepseekmath-with-code-interpreter?scriptVersionId=177616865
+```
+
+### Using the right evaluation
+
+If I just want to evaluate the goodness of the base model is better to not aggregate the predictions.
+For example if I make a single prediction on the 580 MATH level 5 problems I will get an uncertainty of around 4% on the accuracy metrics. If I make 4 predictions on each problem that uncertainty will drop to 2%.
+
+In the other hand to evaluate the whole system I need to aggregate the predictions on each problem.
+However this evaluation is much slower, because f.e. making 10 prediction on 50 problems will take a similar amount of time to the proposed evaluation in the previous paragraph, and the uncertainty will be huge: 13%
+I need to use the whole dataset for evaluation, otherwise the uncertainty is too big. And that could take around 16 hours.
+
+A model that has greater accuracy and less errors on individual problems evaluation will also have higher
+accuracy when the inferences are aggregated per problem.
+
 ## Results
 
 ### First evaluations on MATH dataset
@@ -151,7 +172,35 @@ Luck will play a big role in the competition. And reaching a good score first wi
 
 However this is calculated with the assumption that all the problems have the same difficulty, which is likely untrue.
 
+### Few-shot prompt sources
 
+| few-shot source | MATH5 accuracy | LB score |
+|-----------------|----------------|----------|
+| MATH            | 30%            | 7        |
+| AIMO train      | 51%            | 20       |
+| MathInstruct    | 49%            | 21       |
+
+Using prompts with code clearly beats the text approach. On a following iteration I should try using
+RAG to find similar problems.
+
+### Number of shots
+
+The table below shows the evaluation on Math level 5 problems with a single inference on each.
+
+| few-shot | runtime (min) | correct | unanswered | wrong | boxed_answers | mean code interpreter calls |
+|----------|---------------|---------|------------|-------|---------------|-----------------------------|
+| 1        | 131           | 34%     | 28%        | 38%   | 65%           | 0.9                         |
+| 2        | 131           | 33%     | 27%        | 40%   | 70%           | 0.9                         |
+| 3        | 148           | 33%     | 28%        | 39%   | 69%           | 0.9                         |
+| 5        | 164           | 36%     | 27%        | 37%   | 71%           | 0.9                         |
+
+- The changes are not significative (at least without a pairwise comparison), uncertainty is around 4%
+- The only significative change is that boxed answers are more frequent
+
+### Effect of saving KV values
+
+I have run the exact same evaluation with and without saving KV values. The first run was 131 minutes, and without saving KV values the time grew to 139 minutes. Thus it is a small difference (at least for 1 shot).
+This opens the door to using an LLM server, however memory usage was almost the same.
 
 ## Conclusion
 
@@ -159,6 +208,7 @@ However this is calculated with the assumption that all the problems have the sa
 
 - RAG to select the best shots for the prompt
 - Prompt tuning to help the model use the correct output format
+- Need a notebook to do pairwise comparison of inference
 
 ## TODO
 
@@ -169,9 +219,10 @@ However this is calculated with the assumption that all the problems have the sa
 - [ ] Evaluate on Veridas cluster?
 
 - [ ] Study the effect of confidence level and repetitions on runtime and accuracy
-- [ ] Measure effect of MathInstruct
-- [ ] Is the number of shots relevant when using MathInstruct? Currently evaluating
+- [x] Measure effect of MathInstruct
+- [x] Is the number of shots relevant when using MathInstruct? Currently evaluating
 - [ ] What is the effect of temperature?
 - [ ] Does quantization affect to speed and accuracy? Currently measuring on Kaggle.
-- [ ] How good are forum's prompts on my evaluation?
+- [ ] Compare all the prompts -> How good are forum's prompts on my evaluation?
 - [ ] Can I improve my LB score by using more repetitions with P100 gpu?
+- [x] How much time is saved by saving the kv values?
