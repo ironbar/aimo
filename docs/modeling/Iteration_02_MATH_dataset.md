@@ -121,9 +121,18 @@ It is a little bit weird because apparently the token speed generation was not s
 #### OOM issues with P100
 
 ```bash
+2 shots
 63/580 out of memory 10%
 https://www.kaggle.com/code/ironbar/deepseekmath-with-code-interpreter?scriptVersionId=177616865
+
+1 shot
+0/580
+https://www.kaggle.com/code/ironbar/deepseekmath-with-code-interpreter?scriptVersionId=177756625
 ```
+
+Despite not having any OOM issues, the metrics are almost the same. That could point to the fact
+that OOM errors might be happening similarly to achieving the max output tokens, thus not affecting the
+accuracy of the model.
 
 ### Using the right evaluation
 
@@ -224,5 +233,6 @@ This opens the door to using an LLM server, however memory usage was almost the 
 - [ ] What is the effect of temperature?
 - [ ] Does quantization affect to speed and accuracy? Currently measuring on Kaggle.
 - [ ] Compare all the prompts -> How good are forum's prompts on my evaluation?
+- [ ] What if I use markdown section in the prompt?
 - [ ] Can I improve my LB score by using more repetitions with P100 gpu?
 - [x] How much time is saved by saving the kv values?
