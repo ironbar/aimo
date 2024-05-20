@@ -211,6 +211,21 @@ The table below shows the evaluation on Math level 5 problems with a single infe
 I have run the exact same evaluation with and without saving KV values. The first run was 131 minutes, and without saving KV values the time grew to 139 minutes. Thus it is a small difference (at least for 1 shot).
 This opens the door to using an LLM server, however memory usage was almost the same.
 
+### Effect of quantization
+
+I have run the same evaluation with and without quantization. It was an experiment with 2 shots from AIMO train
+dataset and 4 repetitions for each problem.
+
+| precision | runtime (min) | correct | unanswered | wrong |
+|-----------|---------------|---------|------------|-------|
+| 16 bit    | 469           | 39%     | 23%        | 38%   |
+| 4 bit     | 783           | 40%     | 22%        | 39%   |
+
+It seems that the quantization does not have any effect on precision, considering that the uncertainty
+in the results is around 2%.
+
+However it does affect inference speed, the model is 67% slower when quantized.
+
 ## Conclusion
 
 ## Next steps
@@ -218,6 +233,13 @@ This opens the door to using an LLM server, however memory usage was almost the 
 - RAG to select the best shots for the prompt
 - Prompt tuning to help the model use the correct output format
 - Need a notebook to do pairwise comparison of inference
+- Could I reduce the errors of the model? F.e. validating the answers
+- Is there room for improved response parsing? Analyze results.
+- Maybe I could use a model that given two possible answers chooses which one seems to be correct.
+  On a first step I would gather as much possible answers as possible and on a second step I will
+  filter them out.
+- Implement better parsing for non boxed answers, by looking at how the model answers. Then
+  revisit the different styles of prompting.
 
 ## TODO
 
@@ -231,8 +253,9 @@ This opens the door to using an LLM server, however memory usage was almost the 
 - [x] Measure effect of MathInstruct
 - [x] Is the number of shots relevant when using MathInstruct? Currently evaluating
 - [ ] What is the effect of temperature?
-- [ ] Does quantization affect to speed and accuracy? Currently measuring on Kaggle.
+- [x] Does quantization affect to speed and accuracy? Currently measuring on Kaggle.
 - [ ] Compare all the prompts -> How good are forum's prompts on my evaluation?
 - [ ] What if I use markdown section in the prompt?
 - [ ] Can I improve my LB score by using more repetitions with P100 gpu?
 - [x] How much time is saved by saving the kv values?
+- [ ] Prompt that forces to use python code, AIMO train prompts use more code than MathInstruct and the paper says that few-shot prompt is not worth it. The prompt should finish with the start of python code.
