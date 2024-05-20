@@ -43,6 +43,12 @@ on instructions and RL is done.
 
 ![deepseek-results](https://raw.githubusercontent.com/deepseek-ai/DeepSeek-Math/main/images/instruct_results.png)
 
+> restricted by the model scale, DeepSeekMath is worse than GPT-4 on few-shot capability. GPT-4 could improve its performance with few-shot inputs, while DeepSeekMath shows similar performance in zero-shot and few-shot evaluation.
+
+On my first read of the paper I missed this quote, because it was on the future work section. There isn't any
+other mention to few-shot prompting in the paper. My initial experiments suggest that this quote is true, I'm getting
+the same or better results with zero shot than with few shot.
+
 ## [Orca: Progressive Learning from Complex Explanation Traces of GPT-4](https://arxiv.org/pdf/2306.02707.pdf)
 
 They fine-tune a Llama model in 5M chain of thought responses from ChatGPT and GPT4. This results

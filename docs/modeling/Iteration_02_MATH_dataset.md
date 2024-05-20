@@ -226,6 +226,45 @@ in the results is around 2%.
 
 However it does affect inference speed, the model is 67% slower when quantized.
 
+### Effect of temperature
+
+I have made experiments with 2 shots from AIMO train dataset and 4 repetitions for each problem.
+The only variation between experiments was the temperature.
+
+| temperature | runtime (min) | correct | unanswered | wrong |
+|-------------|---------------|---------|------------|-------|
+| 1           | 506           | 35%     | 24%        | 40%   |
+| 0.5         | 508           | 39%     | 24%        | 37%   |
+| 0.25        | 483           | 40%     | 23%        | 37%   |
+| 0.12        | 492           | 40%     | 23%        | 37%   |
+| 0.06        | 484           | 41%     | 23%        | 35%   |
+| 0           | 469           | 39%     | 23%        | 38%   |
+
+The uncertainty of this metrics is around 2%, so temperature 1 is worse but the differences between
+the other experiments might not be significative.
+
+### Using different prompts
+
+| prompts                            | correct | unanswered | wrong |
+|------------------------------------|---------|------------|-------|
+| original code prompt               | 31%     | 29%        | 40%   |
+| original code prompt forced python | 36%     | 28%        | 36%   |
+| original cot prompt                | 34%     | 23%        | 43%   |
+| original cot prompt forced python  | 40%     | 26%        | 34%   |
+| MATHCodeInstruct 2 shots           | 35%     | 22%        | 44%   |
+| AIMO_train 2 shots                 | 40%     | 22%        | 38%   |
+| custom prompt                      | 38%     | 25%        | 38%   |
+
+- Forcing python clearly improves the results, thus I should be able to improve results with my prompts.
+  This is achieved by starting the response with the markdown format of python code.
+- No evidence that using few shot prompt gives best results, as the paper already says.
+- AIMO train prompts are better than MATHCodeInstruct, my hypothesis is because they favour to use code
+  because the response starts with python code. On MATHCodeInstruct the response can start with some text.
+
+The uncertainty of this metrics is around 4%, and this are individual problem scores (no self-consistency results)
+
+¿Could I craft better prompts that achieve more correct results and less wrong predictions?
+
 ## Conclusion
 
 ## Next steps
@@ -234,12 +273,9 @@ However it does affect inference speed, the model is 67% slower when quantized.
 - Prompt tuning to help the model use the correct output format
 - Need a notebook to do pairwise comparison of inference
 - Could I reduce the errors of the model? F.e. validating the answers
-- Is there room for improved response parsing? Analyze results.
 - Maybe I could use a model that given two possible answers chooses which one seems to be correct.
   On a first step I would gather as much possible answers as possible and on a second step I will
   filter them out.
-- Implement better parsing for non boxed answers, by looking at how the model answers. Then
-  revisit the different styles of prompting.
 
 ## TODO
 
@@ -248,14 +284,17 @@ However it does affect inference speed, the model is 67% slower when quantized.
 - [x] Analyze evaluation results based on difficulty level, how do they correlate with LB score?
 - [x] Use kaggle notebooks for evaluation, I have 30 hours per week.
 - [ ] Evaluate on Veridas cluster?
-
-- [ ] Study the effect of confidence level and repetitions on runtime and accuracy
 - [x] Measure effect of MathInstruct
 - [x] Is the number of shots relevant when using MathInstruct? Currently evaluating
-- [ ] What is the effect of temperature?
+- [x] What is the effect of temperature?
 - [x] Does quantization affect to speed and accuracy? Currently measuring on Kaggle.
-- [ ] Compare all the prompts -> How good are forum's prompts on my evaluation?
-- [ ] What if I use markdown section in the prompt?
-- [ ] Can I improve my LB score by using more repetitions with P100 gpu?
 - [x] How much time is saved by saving the kv values?
-- [ ] Prompt that forces to use python code, AIMO train prompts use more code than MathInstruct and the paper says that few-shot prompt is not worth it. The prompt should finish with the start of python code.
+- [x] Prompt that forces to use python code, AIMO train prompts use more code than MathInstruct and the paper says that few-shot prompt is not worth it. The prompt should finish with the start of python code.
+- [x] Implement better parsing for non boxed answers, by looking at how the model answers. Then
+  revisit the different styles of prompting.
+- [x] Reanalyze the results with the new parsing
+- [ ] Evaluate AIMO train with new configuration on Kaggle notebook. ONGOING
+- [x] Compare all the prompts -> How good are forum's prompts on my evaluation?
+- [x] What if I use markdown section in the prompt?. Does not have sense once I have seen that few-shot is not helpful.
+- [x] Can I improve my LB score by using more repetitions with P100 gpu? I can indeed do more repetitions but still haven't improved the LB score yet
+- [ ] Study the effect of confidence level and repetitions on runtime and accuracy
