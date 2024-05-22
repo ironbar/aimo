@@ -265,6 +265,16 @@ The uncertainty of this metrics is around 4%, and this are individual problem sc
 
 ¿Could I craft better prompts that achieve more correct results and less wrong predictions?
 
+### Full evaluation
+
+I have done a full evaluation of the 580 MATH level 5 problems using the same configuration as the submission: 25 repetitions and a confidence level of 95%. The evaluation has taken 34 hours (17 hours on 2x3090 GPUs)
+
+The accuracy is 57% if I use only code answer, and 56% if I use text answers. The differences are not significative though (Code answers solve 14 problems where text fails, but text solves 8 problems were code fails)
+
+What is the effect of the number of repetitions? I can simulate what would happen if having less number of repetitions.
+
+TODO: evaluate with public notebook prompts and compare scores, why I'm not able to beat that notebook?
+
 ## Conclusion
 
 ## Next steps
@@ -276,6 +286,13 @@ The uncertainty of this metrics is around 4%, and this are individual problem sc
 - Maybe I could use a model that given two possible answers chooses which one seems to be correct.
   On a first step I would gather as much possible answers as possible and on a second step I will
   filter them out.
+- Analyze errors to find ways of fixing them
+- Maybe code prompts and non-code prompts are complementary when using self-consistency?
+- Why I don't see the same variance of LB scores with my submissions, public notebook ranges from 15 to 23?
+- Idea: a code only approach. The LLM is only allowed to generate one snippet of code.
+  This might speedup generation. What would be my score if simulating that condition? This will work
+  if the model is not able to recover from coding errors
+- 
 
 ## TODO
 
@@ -293,8 +310,25 @@ The uncertainty of this metrics is around 4%, and this are individual problem sc
 - [x] Implement better parsing for non boxed answers, by looking at how the model answers. Then
   revisit the different styles of prompting.
 - [x] Reanalyze the results with the new parsing
-- [ ] Evaluate AIMO train with new configuration on Kaggle notebook. ONGOING
+- [x] Evaluate AIMO train with new configuration on Kaggle notebook. [DONE](https://www.kaggle.com/code/ironbar/deepseekmath-with-code-interpreter?scriptVersionId=178743530)
 - [x] Compare all the prompts -> How good are forum's prompts on my evaluation?
 - [x] What if I use markdown section in the prompt?. Does not have sense once I have seen that few-shot is not helpful.
 - [x] Can I improve my LB score by using more repetitions with P100 gpu? I can indeed do more repetitions but still haven't improved the LB score yet
-- [ ] Study the effect of confidence level and repetitions on runtime and accuracy
+- [ ] Study the effect of confidence level and repetitions on runtime and accuracy. The problem is that
+  I'm currently using 25 repetitions for the submission. That evaluation could take more than one day
+  on my machine. But that data could be useful for later analysis.
+- [ ] Document youtube video about reasoning, there was some interesting paper.
+- [ ] I need actionable insights
+- [ ] What if I do a full evaluation with the public notebook prompts?
+
+## Future work on Google Cloud
+
+T4 -> 0.3$/hour
+V100 -> 1.92
+L4 -> 0.5
+A100 40GB -> 2.5$/hour
+
+Imagine that the evaluation takes 20 hours on A100, that would be 50$ per evaluation.
+
+https://www.xcelerit.com/computing-benchmarks/insights/benchmarks-deep-learning-nvidia-p100-vs-v100-gpu/
+https://technical.city/en/video/Tesla-P100-PCIe-16-GB-vs-Tesla-A100
