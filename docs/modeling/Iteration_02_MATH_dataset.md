@@ -267,13 +267,51 @@ The uncertainty of this metrics is around 4%, and this are individual problem sc
 
 ### Full evaluation
 
-I have done a full evaluation of the 580 MATH level 5 problems using the same configuration as the submission: 25 repetitions and a confidence level of 95%. The evaluation has taken 34 hours (17 hours on 2x3090 GPUs)
+I have prepared a full evaluation of the 580 MATH level 5 problems using the same configuration as the submission: 25 repetitions and a confidence level of 95% for stopping doing inference and returning an answer. I have done
+two evaluations:
 
-The accuracy is 57% if I use only code answer, and 56% if I use text answers. The differences are not significative though (Code answers solve 14 problems where text fails, but text solves 8 problems were code fails)
+1. Using the prompts from the early prize public notebook. The evaluation has taken 42 hours (21 hours on 2x3090 GPUs)
+2. Using those prompts with forced python code and one custom prompt. The evaluation has taken 34 hours (17 hours on 2x3090 GPUs)
 
-What is the effect of the number of repetitions? I can simulate what would happen if having less number of repetitions.
+| prompts       | MATH level 5 accuracy | LB score       |
+|---------------|-----------------------|----------------|
+| early prize   | 54%                   | 16, 21         |
+| forced python | 57%                   | 15, 17, 18, 17 |
 
-TODO: evaluate with public notebook prompts and compare scores, why I'm not able to beat that notebook?
+The uncertainty on MATH is around ±4%, despite evaluating on 580 problems. On leaderboard there is an
+uncertainty of ±7 problems. Notice that uncertainty is not equal to variability. We could have a deterministic
+system that always scores the same on the public test set, but the expected score on the private test set is
+related to the uncertainty.
+
+I have run a pairwise comparison and there is no significative difference between the results.
+
+This is very interesting, because in the previous section we saw significative differences when using
+a single repetition for evaluation. Thus we see differences on a single repetition but no difference
+when using multiple repetitions. **This implies that we need to do the costly full evaluation to optimize our system**.
+
+#### What is the effect of the number of repetitions?
+
+![01_3_python_prompts](res/2024-05-23-11-24-58.png)
+
+![02_public_notebook_prompts](res/2024-05-23-11-25-03.png)
+
+In both cases using more repetitions improves the results as expected. Also there are diminishing
+returns as expected as well.
+
+#### What is the effect of the number of output tokens?
+
+![01_3_python_prompts](res/2024-05-23-11-26-52.png)
+
+![02_public_notebook_prompts](res/2024-05-23-11-26-57.png)
+
+These plots suggests that we might not need 1024 output tokens, let's have a deeper look at the
+distribution of output tokens. Maybe an approach that uses more repetitions but shorter answers could
+be better.
+
+![output token distribution](res/2024-05-23-11-56-22.png)
+
+My estimate is that if we reduce the number of output tokens from 1024 to 512 we could increase the repetitions
+from 25 to 35 while maintaining the execution time.
 
 ## Conclusion
 
@@ -320,6 +358,7 @@ TODO: evaluate with public notebook prompts and compare scores, why I'm not able
 - [ ] Document youtube video about reasoning, there was some interesting paper.
 - [ ] I need actionable insights
 - [ ] What if I do a full evaluation with the public notebook prompts?
+- [ ] Can I reproduce locally the variability of LB score? By selecting 50 problems and running multiple evaluations.
 
 ## Future work on Google Cloud
 
