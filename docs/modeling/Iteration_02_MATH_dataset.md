@@ -298,6 +298,9 @@ when using multiple repetitions. **This implies that we need to do the costly fu
 In both cases using more repetitions improves the results as expected. Also there are diminishing
 returns as expected as well.
 
+We can see significative differences up to 3 repetitions, but after that the difference is not significative.
+So maybe we can do evaluations with 4-5 repetitions and the results will hold up to 25 repetitions?
+
 #### What is the effect of the number of output tokens?
 
 ![01_3_python_prompts](res/2024-05-23-11-26-52.png)
@@ -313,13 +316,30 @@ be better.
 My estimate is that if we reduce the number of output tokens from 1024 to 512 we could increase the repetitions
 from 25 to 35 while maintaining the execution time.
 
+### Variability in evaluations vs LB variability
+
+| prompts                 | val scores         | LB scores      |
+|-------------------------|--------------------|----------------|
+| python_prompts          | 25, 25, 28, 28     | 15, 17, 17, 18 |
+| public notebook prompts | 23, 23, 24, 25, 26 | 16, 21, 21, 21 |
+
+On my validation scores I see a variability of 3 problems, in the leaderboard it increases to 5.
+I have the feeling that submissions made at the same time get the same score.
+
 ## Conclusion
+
+The most important conclusion from this iteration is that I need to do a full evaluation (580 level 5 MATH problems with 25 repetitions each) if I want to evaluate the model correctly. I need to evaluate 580 problems
+to lower the uncertainty of the evaluation, and despite of that it is still high in the order of 4% accuracy.
+I need to do 25 repetitions on each problem because doing a single repetition is not enough. Maybe I could
+do just 4-5 repetitions but I don't know yet.
+
+This has been a very hard iteration because despite all my work I haven't been able to improve over the
+baseline. But now I feel I have a solid foundation and a sound evaluation.
 
 ## Next steps
 
 - RAG to select the best shots for the prompt
 - Prompt tuning to help the model use the correct output format
-- Need a notebook to do pairwise comparison of inference
 - Could I reduce the errors of the model? F.e. validating the answers
 - Maybe I could use a model that given two possible answers chooses which one seems to be correct.
   On a first step I would gather as much possible answers as possible and on a second step I will
@@ -330,7 +350,8 @@ from 25 to 35 while maintaining the execution time.
 - Idea: a code only approach. The LLM is only allowed to generate one snippet of code.
   This might speedup generation. What would be my score if simulating that condition? This will work
   if the model is not able to recover from coding errors
-- 
+- What if I reduce the number of tokens to 512 or 640 and increase the number of repetitions?
+- What is the weight of None answers? Can I reduce them?
 
 ## TODO
 
@@ -352,13 +373,15 @@ from 25 to 35 while maintaining the execution time.
 - [x] Compare all the prompts -> How good are forum's prompts on my evaluation?
 - [x] What if I use markdown section in the prompt?. Does not have sense once I have seen that few-shot is not helpful.
 - [x] Can I improve my LB score by using more repetitions with P100 gpu? I can indeed do more repetitions but still haven't improved the LB score yet
-- [ ] Study the effect of confidence level and repetitions on runtime and accuracy. The problem is that
+- [x] Study the effect of confidence level and repetitions on runtime and accuracy. The problem is that
   I'm currently using 25 repetitions for the submission. That evaluation could take more than one day
   on my machine. But that data could be useful for later analysis.
 - [ ] Document youtube video about reasoning, there was some interesting paper.
 - [ ] I need actionable insights
-- [ ] What if I do a full evaluation with the public notebook prompts?
-- [ ] Can I reproduce locally the variability of LB score? By selecting 50 problems and running multiple evaluations.
+- [x] What if I do a full evaluation with the public notebook prompts?
+- [x] Can I reproduce locally the variability of LB score? By selecting 50 problems and running multiple evaluations.
+- [x] Update Kaggle notebook with gpu memory check
+- [x] Need a notebook to do pairwise comparison of inference
 
 ## Future work on Google Cloud
 

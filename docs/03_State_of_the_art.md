@@ -115,6 +115,14 @@ It is not an in-depth paper, probably the most relevant information is the table
 - [Mathematical Reasoning in Language Models by OpenAI](https://www.youtube.com/watch?v=0rfgyQ-wAQM) This is a very good talk. They train a model to rate if the reasoning steps are correct. They also open-source the training data: [prm800k](https://github.com/openai/prm800k). They say that judging math problem solutions is a hard problem.
 - [Can LLMs Reason & Plan? (Talk @Google_DeepMind LLM Reasoning Seminar)](https://www.youtube.com/watch?v=hGXhFa3gzBs). Not very good.
 
+### [Reasoning Using Large Language Models](https://youtu.be/WLl1766Y9-4?si=l-jHfrQwxqMPqOWH)
+
+> Reasoning is the process of thinking about something in a logical and systematic way, using evidence
+> and past experiences to reach a conclusion or make a decision.
+>
+> Reasoning involves making inferences, composing multiple steps of inferences, evaluating arguments,
+> and drawing logical conclusions based on available information.
+
 ## Conclusions
 
 The state of the art of open source models is far from the super-prize threshold of solving 94% of the problems.

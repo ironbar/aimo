@@ -24,6 +24,8 @@ The model is small enough to be able to run in CPU in less than 1 second.
 
 ## Results
 
+I did a first experiment that did not show any improvement.
+
 ## Conclusion
 
 ## Next steps
