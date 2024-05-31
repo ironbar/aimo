@@ -110,6 +110,18 @@ It is not an in-depth paper, probably the most relevant information is the table
 
 ![datasets](https://d3i71xaburhd42.cloudfront.net/42445823fb0156afddc8c72eaa5ee81dded5b965/3-Table1-1.png)
 
+## [Least-to-Most Prompting Enables Complex Reasoning in Large Language Models](https://arxiv.org/abs/2205.10625)
+
+![least to most](res/2024-05-31-11-42-11.png)
+
+## [Improving Factuality and Reasoning in Language Models through Multiagent Debate](https://arxiv.org/abs/2305.14325)
+
+1. They give the same problem to different agents
+2. The answers are concatenated and they ask the agents for an updated response using the information of those answers
+3. They do many rounds until consensus is achieved
+
+However improvements on Grade School Math problems are not significative over using majority voting.
+
 ## Videos about reasoning
 
 - [Mathematical Reasoning in Language Models by OpenAI](https://www.youtube.com/watch?v=0rfgyQ-wAQM) This is a very good talk. They train a model to rate if the reasoning steps are correct. They also open-source the training data: [prm800k](https://github.com/openai/prm800k). They say that judging math problem solutions is a hard problem.
