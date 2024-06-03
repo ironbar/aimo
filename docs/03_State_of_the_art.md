@@ -38,8 +38,14 @@ They used Gemini Pro as the base model. This resulted on a big improvement over 
 
 ## [DeepSeek Math](https://github.com/deepseek-ai/DeepSeek-Math)
 
-They take the model DeepSeek-Coder and continue training with 120B math-related tokens. Next fine-tuning
-on instructions and RL is done.
+They start with DeepSeek-Coder model:
+
+1. Pre-train on 120B math tokens
+2. Instruction tuning with:
+    - Chain of thought
+    - Program of thought
+    - Tool integrated reasoning
+3. Reinforcement learning with Group Relative Policy Optimization
 
 ![deepseek-results](https://raw.githubusercontent.com/deepseek-ai/DeepSeek-Math/main/images/instruct_results.png)
 

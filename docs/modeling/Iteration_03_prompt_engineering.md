@@ -32,7 +32,8 @@ I need to improve from my current 21 on LB score to 27, that is a +12% in accura
 After a week and more than 20 experiments before I have not been able to improve LB score with prompt engineering. How could I improve?
 
 - Using a better base model to generate answers. Fine-tuning DeepSeekMath may allow to do that.
-  However people in the forum have said that they got worse results after fine-tuning.
+  However people in the forum have said that they got worse results after fine-tuning. Remember that
+  the model has already being trained with RL.
   It is uncertain if fine-tuning can improve the reasoning skills of a model.
 - Change the generation process. Maybe giving as input already generated answers in a dialog between LLMs.
   Or we might give the possible answers to the model to choose between them, like in a test exam. [MMLU example](https://github.com/deepseek-ai/DeepSeek-Math/blob/main/evaluation/few_shot_prompts/cot_mmlu_stem_4_shot.py)
@@ -40,6 +41,8 @@ After a week and more than 20 experiments before I have not been able to improve
   be easier to validate than others.
 - Answer selection. Instead of relying on votes, I might use a model to select the best answer.
 - Maybe rewriting the problem in a more clear way could help sometimes. I could create a dataset with rewritten problems and test the accuracy on it.
+
+Score of 22 when increasing temperature to 0.9, probably luck.
 
 ## Next steps
 
@@ -54,5 +57,9 @@ After a week and more than 20 experiments before I have not been able to improve
   - [ ] ~~Bad prompt~~
   - [x] Few-shot prompt
   - [x] Few-shot prompt with RAG
-  - [ ] Temperature and top_p
-  - [ ] Ask the model to verify the answer. It ignores the request to verify the answer. If we want to do a verification we should do it manually.
+  - [x] Temperature and top_p
+  - [x] Prompt that uses code from the repo
+  - [x] Ask the model to verify the answer. It ignores the request to verify the answer. If we want to do a verification we should do it manually.
+- [ ] Document results
+- [ ] Full evaluation with the best configuration
+- [ ] Analysis merging the results of all the evaluations
