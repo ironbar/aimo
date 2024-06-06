@@ -141,6 +141,8 @@ notebook returned the following score distribution: `[21, 22, 18, 17, 15]`
 
 ## Next steps
 
+![ways of improvement](res/2024-06-06-09-16-28.png)
+
 - Reread the literature and better understand how DeepSeekMath model was trained
 - Measure the effect of temperature with a higher number of repetitions
 
