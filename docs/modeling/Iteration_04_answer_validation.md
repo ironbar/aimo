@@ -30,6 +30,13 @@ chat format could be a good way to try that.
 
 ## Results
 
+### DeepSeekMath is not able to validate responses
+
+I have made multiple experiments with different problems and responses and almost always DeepSeekMath
+says that the answer is correct. Even more surprising is that GPT4-o makes obvious mistakes also.
+
+I might try with other models.
+
 ## Conclusion
 
 ## Next steps
