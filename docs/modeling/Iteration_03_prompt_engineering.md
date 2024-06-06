@@ -88,6 +88,39 @@ Assistant: Sure, we can solve the problem by writing a Python program.
 - The differences between the prompts that use code are very small, not significative
 - The effect of temperature and top_p is uncertain in this evaluation
 
+### Full evaluation
+
+I have made a full evaluation with 31 repetitions using the two prompts shown in the previous section.
+Unfortunately there is no significative improvement. It has an accuracy of 57%, just like using
+the public prompts with python forcing. 
+
+![01_3_python_prompts](res/2024-06-04-12-51-06.png)
+
+![03_2_prompts](res/2024-06-04-12-51-11.png)
+
+The new candidate improves the accuracy faster but leads to the same end result.
+
+It seems again that we have to do full evaluation, we cannot do just 5 repetitions but we have to do 25.
+
+### Multi-prompt full evaluation
+
+I run a random search to combine multiple prompts from previous experiments. That search found a combination that
+achieved an accuracy of 61% when mixing different prompts. However the result was optimistic because
+I was selecting already done evaluations, thus I decided to run a realistic evaluation.
+
+| confidence  | runtime (h) | accuracy |
+|-------------|-------------|----------|
+| 90%         | 27.7        | 59%      |
+| 95%         | 29.1        | 57%      |
+
+Reducing the confidence to 90% results on a minimal speedup, the accuracy is slightly higher but it is not
+statistically significative. In theory using a higher confidence will lead to more stable and more
+accurate results.
+
+The results from this evaluation do not show significative improvements over previous experiments.
+However it might have sense to use many different prompts to induce diversity in the responses since
+we have seen that there are no big differences between good enough prompts.
+
 ## Conclusion
 
 After a week and more than 20 experiments before I have not been able to improve LB score with prompt engineering. How could I improve?
@@ -109,6 +142,7 @@ notebook returned the following score distribution: `[21, 22, 18, 17, 15]`
 ## Next steps
 
 - Reread the literature and better understand how DeepSeekMath model was trained
+- Measure the effect of temperature with a higher number of repetitions
 
 ## TODO
 
@@ -123,6 +157,8 @@ notebook returned the following score distribution: `[21, 22, 18, 17, 15]`
   - [x] Prompt that uses code from the repo
   - [x] Ask the model to verify the answer. It ignores the request to verify the answer. If we want to do a verification we should do it manually.
 - [x] Document results
-- [ ] Full evaluation with the best configuration
-- [ ] Analysis merging the results of all the evaluations
+- [x] Full evaluation with the best configuration
+- [x] Analysis merging the results of all the evaluations
+- [x] Can I find a better combination of prompts?
 - [ ] I might drop the problems that do not receive any correct answer. This will allow to speedup evaluation.
+- [x] Role of confidence, what if I decrease confidence from 0.95 to 0.9
