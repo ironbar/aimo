@@ -30,10 +30,13 @@ chat format could be a good way to try that.
 
 ## Results
 
-### DeepSeekMath is not able to validate responses
+### DeepSeekMath is not able to validate responses or select the correct response
 
 I have made multiple experiments with different problems and responses and almost always DeepSeekMath
 says that the answer is correct. Even more surprising is that GPT4-o makes obvious mistakes also.
+
+I have also tested giving multiple response to the model and asking to select the correct and the
+responses seemed to be random. This DeepSeekMath model is not very intelligent.
 
 I might try with other models.
 
