@@ -42,7 +42,15 @@ I might try with other models.
 
 ## Conclusion
 
+DeepSeekMath is a model that can generate responses to mathematical problems, but it is not able of
+validating the answers or select the correct response among a few responses. It is not an intelligent model.
+
 ## Next steps
+
+- Try different models instead of Kaggle's DeepSeekMath-RL
+- Try [VLLM](https://github.com/vllm-project/vllm) to speedup model inference
+- Experiments with different temperatures or increasing temperatures
+- I might improve the results by rewriting the problems to make them more clear, or divide the problem in steps.
 
 ## TODO
 
