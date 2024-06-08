@@ -42,6 +42,8 @@ Another option might be to use this class:
 
 ## Next steps
 
+- Maybe some advanced inference like speculative decoding might improve the results? I'm not sure what it is but VLLM has some parameters for that.
+
 ## TODO
 
 - [ ] Refactor current code to make room for VLLM
