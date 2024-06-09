@@ -36,6 +36,27 @@ Another option might be to use this class:
 - https://docs.vllm.ai/en/stable/dev/engine/async_llm_engine.html
 - https://github.com/vllm-project/vllm/issues/1200
 
+### Using VLLM on Kaggle on T4 GPUs
+
+T4 GPUs have 15360MiB according to Nvidia-smi, 3090s have 24576MiB. So that is 0.625 of the memory of
+my home PC. I could use that value to simulate and experiment faster at home.
+
+Loading model weights took 12.8725 GB
+
+#### Quantization
+
+- `fp8`, althought is documented it does not find that option on Kaggle, maybe there is a missmatch between versions
+- `awq` -> ValueError: Cannot find the config file for awq
+
+'awq', 'gptq', 'squeezellm'
+
+```
+# when not using quantization and just a single worker I get this error
+# maybe there is a problem with the installation of vllm
+top_logprobs = prompt_logprobs + output.logprobs
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'
+```
+
 ## Results
 
 ## Conclusion
