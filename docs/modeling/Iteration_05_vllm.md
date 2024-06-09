@@ -47,8 +47,9 @@ Loading model weights took 12.8725 GB
 
 - `fp8`, althought is documented it does not find that option on Kaggle, maybe there is a missmatch between versions
 - `awq` -> ValueError: Cannot find the config file for awq
+- `gptq` -> ValueError: Cannot find the config file for gptq
+- `squeezellm` -> ValueError: Cannot find the config file for squeezellm
 
-'awq', 'gptq', 'squeezellm'
 
 ```
 # when not using quantization and just a single worker I get this error
@@ -56,6 +57,22 @@ Loading model weights took 12.8725 GB
 top_logprobs = prompt_logprobs + output.logprobs
 TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'
 ```
+
+If I install vllm directly from pip I have been able to make one succesfull inference. So maybe
+the wheels are not correct.
+
+#### Local runs
+
+I'm able to run inference with just 62% of 3090 memory with 1 repetition.
+
+When reducing gpu memory to 60% I get this error.
+[rank0]: ValueError: The model's max seq len (1536) is larger than the maximum number of tokens that can be stored in KV cache (1104). Try increasing `gpu_memory_utilization` or decreasing `max_model_len` when initializing the engine.
+
+- I need to make the processes robust to exceptions, and log them.
+- Also remove tokenizer from code
+- This local runs with lower memory will show me the speedup I could get on Kaggle.
+- Maybe I will have to use a quantized model, that will allow to make batched inference.
+- Probably using sort prompts will be better.
 
 ## Results
 
