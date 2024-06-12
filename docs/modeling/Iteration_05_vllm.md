@@ -76,12 +76,36 @@ When reducing gpu memory to 60% I get this error.
 
 ## Results
 
+### Validation results
+
+| repetitions | accuracy  | runtime (min) |
+|-------------|-----------|---------------|
+| 25          | 57%       | 219           |
+| 100         | 59%       | 463           |
+| 200         | 61%       | 830           |
+
+I'm able to do an evaluation with 200 repetitions in 13 hours using the 2 gpus. Without
+using VLLM I was able to do an evaluation with 25 repetitions in about the same time.
+So we have achieved an speedup of x8 with the introduction of VLLM.
+
+We can observe a small increase in accuracy when using more repetitions.
+
+![](res/2024-06-12-10-43-01.png)
+
+It seems that with the current configuration after 200-300 repetitions there is no improvement.
+Probably evaluating just by 100 repetitions should be enough to measure improvements very reliably.
+
+### Leaderboard results
+
 ## Conclusion
 
 ## Next steps
 
 - Maybe some advanced inference like speculative decoding might improve the results? I'm not sure what it is but VLLM has some parameters for that.
+- Can I reduce inference time using confidence in the decision?
+- Maybe playing with the temperature, increasing the temperature on each step?
 
 ## TODO
 
-- [ ] Refactor current code to make room for VLLM
+- [x] Refactor current code to make room for VLLM
+- [ ] What would be the max seq len available at Kaggle?
