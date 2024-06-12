@@ -88,8 +88,8 @@ I'm able to do an evaluation with 200 repetitions in 13 hours using the 2 gpus. 
 using VLLM I was able to do an evaluation with 25 repetitions in about the same time.
 So we have achieved an speedup of x8 with the introduction of VLLM. The speedup is even
 higher because previous evaluation had early stopping for each problem and I haven't implemented
-that yet with VLLM.
-This speedup comes from batching inferences and being able to parallelize the submission and
+that yet with VLLM (probably the speedup is close to x16).
+This speedup comes from batching inferences and being able to parallelize the CPU and GPU execution.
 
 We can observe a small increase in accuracy when using more repetitions.
 
@@ -126,9 +126,11 @@ They seem to be much more stable, but around 18 problems solved.
 
 ## Next steps
 
-- Maybe some advanced inference like speculative decoding might improve the results? I'm not sure what it is but VLLM has some parameters for that.
+- Maybe some advanced inference like speculative decoding might improve the results? I'm not sure what it is but VLLM has some parameters for that. I have done a quick search and it is to use a small model in combination
+  with a bigger model to be more efficient on inference. In other article it seems to be to predict multiple tokens at once.
 - Can I reduce inference time using early stopping confidence in the decision? Probably, but that is not expected to bring improvements.
 - Maybe playing with the temperature, increasing the temperature on each step?
+- What if I use a different model on each server? The RL and the instruct versions of DeepSeekMath
 
 ## TODO
 
