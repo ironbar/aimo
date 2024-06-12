@@ -122,7 +122,8 @@ My PC is more powerful and 80 workers is a good choice.
 
 I have been able to speedup inference with a factor higher than x8, but the LB scores haven't improved.
 
-They seem to be much more stable, but around 18 problems solved.
+They seem to be much more stable, but around 18 problems solved, the best team in the leaderboard
+is able to solve 27 problems which is much better (36% vs 54%).
 
 ## Next steps
 
