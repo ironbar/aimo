@@ -86,7 +86,10 @@ When reducing gpu memory to 60% I get this error.
 
 I'm able to do an evaluation with 200 repetitions in 13 hours using the 2 gpus. Without
 using VLLM I was able to do an evaluation with 25 repetitions in about the same time.
-So we have achieved an speedup of x8 with the introduction of VLLM.
+So we have achieved an speedup of x8 with the introduction of VLLM. The speedup is even
+higher because previous evaluation had early stopping for each problem and I haven't implemented
+that yet with VLLM.
+This speedup comes from batching inferences and being able to parallelize the submission and
 
 We can observe a small increase in accuracy when using more repetitions.
 
@@ -97,12 +100,34 @@ Probably evaluating just by 100 repetitions should be enough to measure improvem
 
 ### Leaderboard results
 
+| repetitions | LB score                    |
+|-------------|-----------------------------|
+| 30          | 16, 17, 18, 18, 18, 19, 20  |
+| 200         | 18, 18, 18, 19              |
+
+On submission I have been able to increase the repetitions from 30 to 200. Thus we see a similar
+speedup.
+
+The scores seem to be much more stable, as expected when increasing the number of repetitions.
+
+### Optimal number of workers
+
+![](res/2024-06-12-12-17-49.png)
+
+For Kaggle 30 workers will be fine, maybe 20 even better if I implement early stopping.
+
+My PC is more powerful and 80 workers is a good choice.
+
 ## Conclusion
+
+I have been able to speedup inference with a factor higher than x8, but the LB scores haven't improved.
+
+They seem to be much more stable, but around 18 problems solved.
 
 ## Next steps
 
 - Maybe some advanced inference like speculative decoding might improve the results? I'm not sure what it is but VLLM has some parameters for that.
-- Can I reduce inference time using confidence in the decision?
+- Can I reduce inference time using early stopping confidence in the decision? Probably, but that is not expected to bring improvements.
 - Maybe playing with the temperature, increasing the temperature on each step?
 
 ## TODO
