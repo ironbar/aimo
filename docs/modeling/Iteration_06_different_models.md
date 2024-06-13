@@ -50,6 +50,9 @@ We did not observe improvements in validation score when trying other models fro
 
 ## Next steps
 
+- I could do experiments with the output tokens and temperature. This might bring small improvements, I don't expect big changes.
+- I might fine-tune DeepSeekMath with DPO on the MATH test dataset. I will destroy my ability to measure improvements but maybe it improves on LB. I haven't explored this path yet and I don't see too many alternatives.
+
 ## TODO
 
 - [ ]
