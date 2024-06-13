@@ -1,11 +1,6 @@
 # Iteration n. Iteration_title
 
-_start date_
-
-<!---
-The work is done using short iterations. Each iteration needs to have a very
-clear goal. This allows to gain greater knowledge of the problem on each iteration.
---->
+_12-06-2024_
 
 ## Goal
 
@@ -39,7 +34,19 @@ The Instruct model is clearly worse.
 
 Now let's do an evaluation with VLLM. What if I use a different model on each GPU? That might be beneficial.
 
+The following experiment uses 100 repetitions, and only changes the model.
+
+| model         | Accuracy |
+|---------------|----------|
+| RL + instruct | 58%      |
+| RL            | 59%      |
+
+We don't see any improvement when using two different models. This is probably happening because as
+seen on the previous section the instruct model is clearly worse.
+
 ## Conclusion
+
+We did not observe improvements in validation score when trying other models from the DeepSeekMath family.
 
 ## Next steps
 
