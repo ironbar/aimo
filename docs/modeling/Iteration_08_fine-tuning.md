@@ -1,0 +1,37 @@
+# Iteration 8. Fine-tuning
+
+_13/06/2024_
+
+## Goal
+
+Can I improve the LB score by fine-tuning DeepSeekMath on MATH problems?
+
+## Motivation
+
+The best team is getting a score of 27 on leaderboard, while my luckiest submission only gets 22.
+I have done already many experiments with DeepSeekMath-RL model, so maybe their advantage is that they
+have fine-tuned the model to high school problems.
+
+## Development
+
+### Direct Preference Optimization
+
+My idea is to use DPO to teach the model to better solve the math problems. I have evaluated the MATH
+dataset many times and thus for each problem I have a lot of good and bad answers. I can use that
+data to fine-tune the model.
+
+Then I will evaluate on the test set and I should get a huge improvement since I will be training
+and evaluating on the same set. But that will validate that the training has worked.
+
+The real test will be the leaderboard. If I see improvements in the leaderboard then the next step
+would be to gather new data to evaluate and later fine-tune the model.
+
+## Results
+
+## Conclusion
+
+## Next steps
+
+## TODO
+
+- [ ]
