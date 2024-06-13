@@ -31,6 +31,8 @@ would be to gather new data to evaluate and later fine-tune the model.
 - <https://huggingface.co/docs/trl/main/en/dpo_trainer>
 - <https://github.com/huggingface/trl/blob/main/examples/scripts/dpo.py>
 - I fine-tuned a model with LoRA for the LLM prompt recovery challenge. [Example notebook](https://github.com/ironbar/prompt_recovery/blob/main/notebooks/014_fine-tune_mistral_v2.ipynb)
+- <https://www.philschmid.de/dpo-align-llms-in-2024-with-trl>
+- <https://medium.com/@anchen.li/fine-tune-llama-2-with-sft-and-dpo-8b57cf3ec69>?
 
 I have to create a dataset with the fields: prompt, chosen and rejected. The prompt does not need to
 be in the answers. [Source code](https://github.com/huggingface/trl/blob/f5168fdbaf9cbf6a3f1bdc64dc44b9db3a9ae333/trl/trainer/dpo_trainer.py#L678)
