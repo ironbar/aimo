@@ -103,12 +103,12 @@ Probably evaluating just by 100 repetitions should be enough to measure improvem
 | repetitions | LB score                    |
 |-------------|-----------------------------|
 | 30          | 16, 17, 18, 18, 18, 19, 20  |
-| 200         | 18, 18, 18, 19              |
+| 200         | 18, 18, 18, 19, 20, 21      |
 
 On submission I have been able to increase the repetitions from 30 to 200. Thus we see a similar
 speedup.
 
-The scores seem to be much more stable, as expected when increasing the number of repetitions.
+It is unclear if we have improved. The min score is higher
 
 ### Optimal number of workers
 
@@ -120,10 +120,9 @@ My PC is more powerful and 80 workers is a good choice.
 
 ## Conclusion
 
-I have been able to speedup inference with a factor higher than x8, but the LB scores haven't improved.
+I have been able to speedup inference with a factor higher than x8, but it is unclear if the LB score has improved.
 
-They seem to be much more stable, but around 18 problems solved, the best team in the leaderboard
-is able to solve 27 problems which is much better (36% vs 54%).
+With 21 problems solved in the luckiest submission we are still far from the top team which is is able to solve 27 problems which is much better (42% vs 54%).
 
 ## Next steps
 
@@ -136,4 +135,5 @@ is able to solve 27 problems which is much better (36% vs 54%).
 ## TODO
 
 - [x] Refactor current code to make room for VLLM
-- [ ] What would be the max seq len available at Kaggle?
+- [x] What would be the max seq len available at Kaggle? It seems to be capable of handling 1536 [evaluation](https://www.kaggle.com/code/ironbar/vllm-with-code-interpreter?scriptVersionId=183030249)
+  I haven't seen any problem when increasing the max output tokens from 640 to 896. Neither when adding few-shot prompting (with 1 example).
