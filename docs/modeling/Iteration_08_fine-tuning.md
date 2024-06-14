@@ -37,6 +37,13 @@ would be to gather new data to evaluate and later fine-tune the model.
 I have to create a dataset with the fields: prompt, chosen and rejected. The prompt does not need to
 be in the answers. [Source code](https://github.com/huggingface/trl/blob/f5168fdbaf9cbf6a3f1bdc64dc44b9db3a9ae333/trl/trainer/dpo_trainer.py#L678)
 
+#### Dataset for DPO
+
+- 509 MATH test level 5 problems
+- 10661 pairs of good and bad responses
+- Max prompt length: 296
+- Max length: 937
+
 ## Results
 
 ## Conclusion
