@@ -52,6 +52,6 @@ be in the answers. [Source code](https://github.com/huggingface/trl/blob/f5168fd
 
 ## TODO
 
-- [ ] Notebook to create train dataset, that will make the training notebook shorter.
-- [ ] How to train the model using DPO and LoRA?
-- [ ] How to make inference with VLLM and LoRA?
+- [x] Notebook to create train dataset, that will make the training notebook shorter.
+- [x] How to train the model using DPO and LoRA?
+- [x] How to make inference with VLLM and LoRA?
