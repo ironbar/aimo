@@ -20,6 +20,12 @@ On some previous experiments it seemed that using a maximum number of output tok
 be enough to solve the problems. Now that using VLLM I can do more repetitions I want to revisit
 that.
 
+| Output tokens | runtime (min)  | Accuracy maj | Accuracy pass |
+|---------------|----------------|--------------|---------------|
+| 640           | 463            | 59%          | 87%           |
+| 896           | 604            | 62%          | 90%           |
+| 1024          | 650            | 61%          | 91%           |
+
 ### Temperature and top_p
 
 How does temperature affect to validation accuracy?
