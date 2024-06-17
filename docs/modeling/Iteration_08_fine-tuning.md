@@ -46,7 +46,31 @@ be in the answers. [Source code](https://github.com/huggingface/trl/blob/f5168fd
 
 ## Results
 
+### Validation results
+
+I haven't been able to improve the validation accuracy consistently despite training and evaluating
+on the same dataset. I have seen improvements but too small considering I was training on that dataset.
+
+| experiment              | runtime(min) | Accuracy maj | Accuracy pass |
+|-------------------------|--------------|--------------|---------------|
+| baseline                | 134          | 46%          | 58%           |
+| 01_first_steps          | 172          | 48%          | 54%           |
+| 02_shuffle_train_set    | 163          | 53%          | 59%           |
+| 03_4_epochs             | 190          | 47%          | 50%           |
+| 04_4_epochs_constant_lr | 183          | 52%          | 56%           |
+| 06_v1_dataset           | 189          | 55%          | 59%           |
+| 07_v2_dataset           | 182          | 49%          | 53%           |
+
+- On `v1` version of the dataset I moved the python code block start to the prompt
+- On `v2` version I used the same number of train pairs for each problem and increased the dataset size to 25k pairs.
+
+To verify that the model was learning I added a silly comment in the python code but only was generated
+on inference on 18% of the responses, despite being so easy to learn.
+
 ## Conclusion
+
+I haven't been able to successfully fine-tune DeepSeekMath model. I haven't made a submission since
+I did not get good results on validation.
 
 ## Next steps
 
