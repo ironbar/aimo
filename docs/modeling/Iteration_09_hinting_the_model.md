@@ -38,4 +38,5 @@ the process of giving hints.
 
 ## TODO
 
-- [ ]
+- [ ] Prompts without python code
+- [ ] What if I remove references to the answer being non negative? I could later discard negative values. If the model is brittle that might help.
