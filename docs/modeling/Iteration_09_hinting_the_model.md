@@ -32,11 +32,30 @@ the process of giving hints.
 
 ## Results
 
+- Some problems are better solved without using code.
+- Adding that the answer is a non negative answer might be harmful
+- Sometimes reason step by step works worse than simply giving the problem as input
+- Hints do not seem to work too well
+
+Following this tips I have run a new validation with simpler prompts, some of them without python forcing and
+I get the same accuracy of 59% of previous configurations.
+
+However when making a submission it seems to be slightly better than previous prompts.
+
+| prompts          | LB score                   | mean LB score |
+|------------------|----------------------------|---------------|
+| multiple prompts | 18, 18, 18, 19, 20, 21     | 19.0          |
+| simpler prompts  | 19, 19, 20, 20, 20, 20, 21 | 19.9          |
+
 ## Conclusion
+
+I have found that some problems are better solved without code and even without chain of thought.
 
 ## Next steps
 
+Select the final submissions
+
 ## TODO
 
-- [ ] Prompts without python code
-- [ ] What if I remove references to the answer being non negative? I could later discard negative values. If the model is brittle that might help.
+- [x] Prompts without python code
+- [x] What if I remove references to the answer being non negative? I could later discard negative values. If the model is brittle that might help.
